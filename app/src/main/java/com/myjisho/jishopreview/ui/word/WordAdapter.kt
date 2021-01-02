@@ -1,5 +1,6 @@
 package com.myjisho.jishopreview.ui.word
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.myjisho.jishopreview.R
 import com.myjisho.jishopreview.logic.model.Word
+import com.myjisho.jishopreview.ui.detail.WordDetailActivity
 
 class WordAdapter(private val fragment: Fragment, private val wordList: List<Word>) :
     RecyclerView.Adapter<WordAdapter.ViewHolder>() {
@@ -19,7 +21,16 @@ class WordAdapter(private val fragment: Fragment, private val wordList: List<Wor
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.word_item, parent, false)
-        return ViewHolder(view)
+        val holder = ViewHolder(view)
+        holder.itemView.setOnClickListener {
+            val position = holder.adapterPosition
+            val word = wordList[position]
+            val intent = Intent(parent.context, WordDetailActivity::class.java).apply {
+                putExtra("word", word)
+            }
+            fragment.startActivity(intent)
+        }
+        return holder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
