@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JiShoPreview</string>
+    <string name="app_name">JiSho</string>
     <string name="search_edit_hint">word</string>
     <string name="bg_main_description">bg_main</string>
     <string name="bg_card_description">bg_card</string>
